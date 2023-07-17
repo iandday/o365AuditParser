@@ -103,7 +103,7 @@ if __name__=='__main__':
         for entry in filesToProcess:
             try:
                 logger.info('Processing file: {}'.format(entry))
-                with open(entry, 'r', encoding='latin-1') as inFile:
+                with open(entry, 'r', encoding='utf-8') as inFile:
                     counter = 0
                     # loop through input file
                     dictReader = csv.DictReader(inFile)
@@ -156,7 +156,7 @@ if __name__=='__main__':
                 fileName = '{}-combinedRecords.csv'.format(args.prefix)
                 output_obj = pathlib.Path(args.output.resolve(), fileName)
                 logger.debug('Path: {}'.format(output_obj))
-                with open(output_obj, 'w') as outFile:
+                with open(output_obj,'w', encoding='utf-8') as outFile:
                 
                     # create dictionary writer and write headers
                     dictWriter=csv.DictWriter(outFile, fieldnames=combinedFieldNames, lineterminator='\n')
@@ -181,7 +181,7 @@ if __name__=='__main__':
                 fileName = '{}-combinedRecords.json'.format(args.prefix)
                 output_obj = pathlib.Path(args.output.resolve(), fileName)
                 logger.debug('Path: {}'.format(output_obj))
-                with open(output_obj, 'w') as outFile:
+                with open(output_obj,'w', encoding='utf-8') as outFile:
                     json.dump(allResults, outFile)     
 
         # export one file per workload   
@@ -197,7 +197,7 @@ if __name__=='__main__':
                     # write to file
                     fileName = '{0}-{1}.csv'.format(args.prefix, workload)
                     output_obj = pathlib.Path(args.output.resolve(), fileName)
-                    with open(output_obj, 'w') as outFile:
+                    with open(output_obj,'w', encoding='utf-8') as outFile:
                         logger.debug('Path: {}'.format(output_obj))
                         dictWriter=csv.DictWriter(outFile, fieldnames=fieldNames[workload], lineterminator='\n')
                         dictWriter.writeheader()
@@ -213,7 +213,7 @@ if __name__=='__main__':
                     # write to file
                     fileName = '{0}-{1}.json'.format(args.prefix, workload)
                     output_obj = pathlib.Path(args.output.resolve(), fileName)
-                    with open(output_obj, 'w') as outFile:
+                    with open(output_obj,'w', encoding='utf-8') as outFile:
                         logger.debug('Path: {}'.format(output_obj))
                         json.dump(results[workload], outFile)
 
